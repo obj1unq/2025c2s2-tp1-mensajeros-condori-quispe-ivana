@@ -1,0 +1,26 @@
+import mensajeros.*
+
+describe "paquete" {
+  test "Neo no puede llevar el paquete" {
+            // paquete.estaPagado()
+    assert.equals(false, paquete.estaPagado()) //quiero comparar que estaPagado sea Falso cosa q
+            //ue no pasa porque esta definido en sus atributos
+    paquete.estaPagado(false)//arrange
+    //act
+    //assert
+    assert.equals(false, paquete.elPaquetePuedeSerEntregadoPor(neo))
+    assert.notThat(paquete.elPaquetePuedeSerEntregadoPor(neo))
+  }
+}
+
+describe "paquetePorJean" {
+  test "Jean si puede llevar el paquete, y el mismo esta pago" {
+    paquete.destino(laMatrix)
+    assert.equals(true, paquete.elPaquetePuedeSerEntregadoPor(jeanGray))
+  }
+}
+describe "paquetePorSara" {
+  test "Sara no puede llevar el paquete que esta pagado a Broklyn si sara lleva el camion con un acoplado " {
+    paquete.destino(brooklyn)
+  }
+}
