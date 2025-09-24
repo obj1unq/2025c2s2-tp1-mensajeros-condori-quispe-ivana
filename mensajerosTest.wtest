@@ -1,0 +1,29 @@
+import example.*
+
+describe "Casos DE Prueba de paquete" {
+  test "Neo no puede llevar el paquete" {
+
+
+    paquete.estaPagado(false)//arrange
+
+    assert.equals(false, paquete.elPaquetePuedeSerEntregadoPor(neo, laMatrix))
+    assert.notThat(paquete.elPaquetePuedeSerEntregadoPor(neo, laMatrix))
+  }
+  test "Jean si puede llevar el paquete, y el mismo esta pago" {
+    paquete.estaPagado(true)
+    assert.that(paquete.elPaquetePuedeSerEntregadoPor(jeanGray, laMatrix))
+  }
+  test "Sara no puede llevar el paquete que esta pagado a Broklyn si sara lleva el camion con un acoplado " {
+    paquete.estaPagado(true)
+    camion.cantidadDeAcoplados(1)
+    camion.pesoConAcoplado()
+    saraConnor.vehiculo(camion)
+
+    assert.notThat(paquete.elPaquetePuedeSerEntregadoPor(saraConnor, brooklyn))
+  }
+  test "Caso 4: Sara + moto a Brooklyn" {
+    paquete.estaPagado(true)
+    saraConnor.vehiculo(moto)
+    assert.that(paquete.elPaquetePuedeSerEntregadoPor(saraConnor, brooklyn)) 
+  }
+}
