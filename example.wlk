@@ -1,36 +1,46 @@
 object paquete{
-	var property estaPagado = true // modificar, es independiente o?
-	var property precioDelPaquete = 10 //lo inicializo
+	var estaPagado = true
+	method estaPagado(_estaPagado) {
+	  estaPagado = _estaPagado
+	}
+	method estaPagado() { return  estaPagado}
 	
-	method elPaquetePuedeSerEntregadoPor(mensajero){
+	method elPaquetePuedeSerEntregadoPor(mensajero, destino){
 		return self.estaPagado() && destino.puedeLLegar(mensajero)
 	}
 	//el mensaje deberia responder (true/false) si el paquete 
 	//puede ser entregado por una persona x al determinado destino 
-	var property destino = laMatrix //¿es un atributo? en si  puede cambiar entre broclin y la matrix
+	
 }
 object jeanGray{
-	var property pesoTotal = 65
-	var property puedeLlamar = true
-	 
+	const peso =  65
+	const puedeLLamar = true
+	method pesoTotal() {
+        return peso
+    }
+
+    method puedeLLamar() {
+        return puedeLLamar
+    }
 }
 object neo{
-	var property pesoTotal = 0
-	var property puedeLlamar = true
-	var property tieneCredito = true //propiety
-	method puedeLlamar() = puedeLlamar == tieneCredito //siento que puede simplemente ser un mensaje y no atributo
+	const peso = 0 
+	var property tieneCredito = true //propietyproperty porque quiero modificar en cualquier momento y neceito obtener el valor
+
+	method puedeLLamar() {return  tieneCredito} 
+	method pesoTotal() {
+	  return peso
+	}
 }
 object saraConnor{
 	var property peso = 70
-	var property pesoTotal = 0
-	//var pesoConCamion = 100
-	var property puedeLlamar = true
 	var property vehiculo = camion
+
 	method pesoTotal(){
-		return self.calcularPesoTotal()
-	}
-	method calcularPesoTotal(){
 		return self.peso() + vehiculo.pesoVehiculo() 
+	}
+	method puedeLLamar(){
+		return false
 }
 }
 object brooklyn{
@@ -39,17 +49,25 @@ object brooklyn{
 	}
 }
 object laMatrix {
-	method puedeLlegar(mensajero) {
-		return mensajero.puedeLlamar()
+	method puedeLLegar(mensajero) {
+		return mensajero.puedeLLamar()
 	}
 }
 object camion{
 	const pesoInicial = 500
+	const pesoDeAcoplado = 500 //como  peso de acomplado nunca cambia se puede poner directamente en la funcion solo 500 
 	var pesoVehiculo = 0
-	method pesoConAcoplado(cantidadDeAcoplado){
-		pesoVehiculo = cantidadDeAcoplado * pesoInicial
+	var property cantidadDeAcoplados = 0
+
+	method pesoDeAcoplado() = pesoDeAcoplado 
+	method pesoConAcoplado(){
+		pesoVehiculo = pesoInicial + (cantidadDeAcoplados * pesoDeAcoplado )
 	}
+
+	method pesoVehiculo(){ return pesoVehiculo} 
 }
 object moto{
-	var property pesoVehiculo = 100
+	method pesoVehiculo() {
+    return 100
+  }// en vez de hacerlo atributo y crearle su getter, preferi que sea directamente un metodo
 }
